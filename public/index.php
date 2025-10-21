@@ -19,7 +19,7 @@ http_response_code(404); header('Content-Type: text/plain; charset=utf-8'); echo
 function page_form(string $flash='', array $old=[]): string{
   $name=h($old['name']??''); $birth=h($old['birth']??''); $phone=h($old['phone']??''); $cell=h($old['cell']??''); $email=h($old['email']??'');
   return <<<HTML
-<!doctype html><html lang="pt-br"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>Cadastro de Pacientes</title>
+<!doctype html><html lang="pt-br"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>Cadastro de Pacientes V1</title>
 <style>body{font-family:system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif;margin:2rem}.container{max-width:640px;margin:0 auto}h1{margin-bottom:.5rem}p.desc{color:#555;margin-top:0}form{display:grid;gap:12px;margin-top:16px}label{font-weight:600}input[type=text],input[type=date],input[type=email],input[type=tel]{width:100%;padding:10px;border:1px solid #ddd;border-radius:8px}button{padding:12px 16px;border:0;border-radius:8px;cursor:pointer}button.primary{background:#0d6efd;color:#fff}.alert{padding:12px 14px;border-radius:8px;margin:8px 0 4px}.alert.success{background:#e6f4ea;color:#1e7e34;border:1px solid #b7e1c1}.alert.error{background:#fdecea;color:#a11;border:1px solid #f5c2c7}small.hint{color:#666}.muted{color:#666;font-size:14px}.row{display:grid;gap:12px;grid-template-columns:1fr 1fr}</style></head>
 <body><div class="container"><h1>Cadastro de Pacientes</h1><p class="desc">Preencha seus dados para contato e agendamento.</p>{$flash}
 <form method="post" action="/patients" novalidate>
