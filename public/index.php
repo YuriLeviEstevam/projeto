@@ -38,9 +38,8 @@ if ($method === 'GET' && $path === '/db-check') {
 }
 
 if ($method === 'POST' && $path === '/patients') {
-   $name = trim($_POST['name'] ?? '');
-  // Adicionar a coleta do CPF
- $cpf  = trim($_POST['cpf'] ?? ''); 
+ $name = trim($_POST['name'] ?? '');
+ $cpf = trim($_POST['cpf'] ?? ''); 
  $birth = trim($_POST['birth_date'] ?? '');
  $phone = trim($_POST['phone'] ?? '');
  $cell = trim($_POST['cellphone'] ?? '');
@@ -128,11 +127,11 @@ echo "Not Found";
 
 function page_form(string $flash = '', array $old = []): string
 {
-  $name  = h($old['name'] ?? '');
+  $name = h($old['name'] ?? '');
   $birth = h($old['birth'] ?? '');
-  $cpf   = h($old['cpf'] ?? '');
+  $cpf = h($old['cpf'] ?? '');
   $phone = h($old['phone'] ?? '');
-  $cell  = h($old['cell'] ?? '');
+  $cell = h($old['cell'] ?? '');
   $email = h($old['email'] ?? '');
 
   return <<<HTML
