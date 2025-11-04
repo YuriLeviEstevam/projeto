@@ -132,11 +132,12 @@ function page_form(string $flash = '', array $old = []): string
     $cell = h($old['cell'] ?? '');
     $email = h($old['email'] ?? '');
 
-    return <<<HTML;
+    return <<<HTML
 <!doctype html>
 <html lang="pt-br">
 <head>
-  <meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Cadastro de Pacientes</title>
   <link rel="stylesheet" href="./admin/style.css">
 </head>
@@ -145,22 +146,46 @@ function page_form(string $flash = '', array $old = []): string
     <h1>Cadastro de Pacientes</h1>
     <p class="desc">Preencha seus dados para contato e agendamento.</p>{$flash}
     <form method="post" action="/patients" novalidate>
-      <div><label for="name">Nome completo *</label><input type="text" id="name" name="name" value="{$name}" required></div>
-      <div class="row">
-        <div><label for="cpf">CPF (apenas números) *</label><input type="text" id="cpf" name="cpf" value="{$cpf}" maxlength="11" required></div>
-        <div><label for="birth_date">Data de nascimento</label><input type="date" id="birth_date" name="birth_date" value="{$birth}" placeholder="YYYY-MM-DD"></div>
+      <div>
+        <label for="name">Nome completo *</label>
+        <input type="text" id="name" name="name" value="{$name}" required>
       </div>
       <div class="row">
-        <div><label for="phone">Telefone (fixo)</label><input type="tel" id="phone" name="phone" value="{$phone}"></div>
-        <div><label for="cellphone">Celular</label><input type="tel" id="cellphone" name="cellphone" value="{$cell}"></div>
+        <div>
+          <label for="cpf">CPF (apenas números) *</label>
+          <input type="text" id="cpf" name="cpf" value="{$cpf}" maxlength="11" required>
+        </div>
+        <div>
+          <label for="birth_date">Data de nascimento</label>
+          <input type="date" id="birth_date" name="birth_date" value="{$birth}" placeholder="YYYY-MM-DD">
+        </div>
       </div>
-      <div><label for="email">E-mail</label><input type="email" id="email" name="email" value="{$email}" placeholder="voce@exemplo.com"></div>
-      <div><button class="primary" type="submit">Enviar cadastro</button></div>
-      <p class="muted"><small class="hint">Ao enviar, você concorda com o uso dos seus dados para contato e agendamento.</small></p>
+      <div class="row">
+        <div>
+          <label for="phone">Telefone (fixo)</label>
+          <input type="tel" id="phone" name="phone" value="{$phone}">
+        </div>
+        <div>
+          <label for="cellphone">Celular</label>
+          <input type="tel" id="cellphone" name="cellphone" value="{$cell}">
+        </div>
+      </div>
+      <div>
+        <label for="email">E-mail</label>
+        <input type="email" id="email" name="email" value="{$email}" placeholder="voce@exemplo.com">
+      </div>
+      <div>
+        <button class="primary" type="submit">Enviar cadastro</button>
+      </div>
+      <p class="muted">
+        <small class="hint">Ao enviar, você concorda com o uso dos seus dados para contato e agendamento.</small>
+      </p>
     </form>
-    <p class="muted">Endpoints: <code>/health</code> • <code>/db-check</code> • <code>POST /patients</code></p>
+    <p class="muted">
+      Endpoints: <code>/health</code> • <code>/db-check</code> • <code>POST /patients</code>
+    </p>
   </div>
 </body>
 </html>
-HTML>;
+HTML;
 }
