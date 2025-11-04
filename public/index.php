@@ -8,7 +8,7 @@ use App\Health;
 use App\Db;
 
 $method = $_SERVER['REQUEST_METHOD'] ?? 'GET';
-$path   = parse_url($_SERVER['REQUEST_URI'] ?? '/', PHP_URL_PATH) ?: '/';
+$path = parse_url($_SERVER['REQUEST_URI'] ?? '/', PHP_URL_PATH) ?: '/';
 
 function h(string $s): string
 {
@@ -92,16 +92,15 @@ $err[] = 'Telefone (fixo) deve conter apenas números.';
  try {
 $pdo = Db::conn();
  $st = $pdo->prepare(
- 
-'INSERT INTO patients (name, cpf, birth_date, phone, cellphone, email) VALUES (:n,:c_p,:b,:p,:c,:e)'
+ 'INSERT INTO patients (name, cpf, birth_date, phone, cellphone, email) VALUES (:name,:cpf,:birth,:phone,:cell,:email)'
  );
  $st->execute([
- ':n' => $name ?: null,
- ':c_p' => $cpf ?: null,
- ':b' => $birth ?: null,
- ':p' => $phone ?: null,
- ':c' => $cell ?: null,
- ':e' => $email ?: null,
+ ':name' => $name ?: null,
+ ':cpf' => $cpf ?: null,
+ ':birth' => $birth ?: null,
+ ':phone' => $phone ?: null,
+ ':cell' => $cell ?: null,
+ ':email' => $email ?: null,
 ]);
 
  echo page_form('<div class="alert success">Paciente cadastrado com sucesso.</div>');
