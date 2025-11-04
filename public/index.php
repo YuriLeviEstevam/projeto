@@ -92,15 +92,15 @@ if ($method === 'POST' && $path === '/patients') {
     try {
         $pdo = Db::conn();
         $st = $pdo->prepare(
-            'INSERT INTO patients (name, cpf, birth_date, phone, cellphone, email) VALUES (:name, :cpf, :birth, :phone, :cell, :email)'
+        'INSERT INTO patients (name, cpf, birth_date, phone, cellphone, email) VALUES (:n, :c_f, :b, :p, :c, :e)'
         );
         $st->execute([
-            ':name' => $name ?: null,
-            ':cpf' => $cpf ?: null,
-            ':birth' => $birth ?: null,
-            ':phone' => $phone ?: null,
-            ':cell' => $cell ?: null,
-            ':email' => $email ?: null,
+            ':n' => $name ?: null,
+            ':c_f' => $cpf ?: null,
+            ':b' => $birth ?: null,
+            ':p' => $phone ?: null,
+            ':c' => $cell ?: null,
+            ':e' => $email ?: null,
         ]);
 
         echo page_form('<div class="alert success">Paciente cadastrado com sucesso.</div>');
