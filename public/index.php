@@ -138,7 +138,7 @@ function page_form(string $flash = '', array $old = []): string
     <head>
       <meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
       <title>Cadastro de Pacientes</title>
-      <link rel="stylesheet" href="style.css">
+      <link rel="stylesheet" href="./admin/style.css">
 
     </head>
 <body><div class="container"><h1>Cadastro de Pacientes</h1><p class="desc">Preencha seus dados para contato e agendamento.</p>{$flash}
