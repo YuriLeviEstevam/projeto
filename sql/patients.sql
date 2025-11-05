@@ -5,6 +5,7 @@ CREATE TABLE IF NOT EXISTS patients (
   phone TEXT,
   cellphone TEXT,
   email TEXT,
-  status TEXT NOT NULL DEFAULT 'novo',created_at TIMESTAMPTZ NOT NULL DEFAULT NOW()
+  status TEXT NOT NULL DEFAULT 'novo',
+  created_at TIMESTAMPTZ NOT NULL DEFAULT NOW()
 );
 
