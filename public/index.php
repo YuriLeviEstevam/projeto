@@ -85,14 +85,7 @@ if ($method === 'POST' && $path === '/patients') {
         $msg = '<div class="alert error"><strong>Erro:</strong><ul><li>'
             . implode('</li><li>', array_map('h', $err))
             . '</li></ul></div>';
-        echo page_form($msg, [
-            'name' => $name,
-            'cpf' => $cpf, 
-            'birth_date' => $birth,
-            'phone' => $phone,
-            'cellphone' => $cell,
-            'email' => $email
-        ]);
+        echo page_form($msg, compact('name', 'cpf', 'birth', 'phone', 'cell', 'email'));
         exit;
     }
 
@@ -115,14 +108,7 @@ if ($method === 'POST' && $path === '/patients') {
     } catch (Throwable $e) {
         echo page_form(
             '<div class="alert error"><strong>Erro ao salvar:</strong> ' . h($e->getMessage()) . '</div>',
-            [
-                'name' => $name,
-                'cpf' => $cpf,
-                'birth_date' => $birth,
-                'phone' => $phone,
-                'cellphone' => $cell,
-                'email' => $email
-            ]
+            compact('name', 'cpf', 'birth', 'phone', 'cell', 'email')
         );
         exit;
     }
@@ -140,30 +126,19 @@ echo "Not Found";
 function page_form(string $flash = '', array $old = []): string
 {
     $name = h($old['name'] ?? '');
-    $birth = h($old['birth_date'] ?? '');
+    $birth = h($old['birth'] ?? '');
     $cpf = h($old['cpf'] ?? '');
     $phone = h($old['phone'] ?? '');
-    $cell = h($old['cellphone'] ?? '');
+    $cell = h($old['cell'] ?? '');
     $email = h($old['email'] ?? '');
 
-    return <<<HTML
+return <<<HTML
 <!doctype html>
 <html lang="pt-br">
 <head>
   <meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Cadastro de Pacientes</title>
-  <style>
-    .container { max-width: 600px; margin: 0 auto; padding: 20px; }
-    .alert { padding: 10px; margin: 10px 0; border-radius: 4px; }
-    .error { background: #fee; border: 1px solid #fcc; color: #c00; }
-    .success { background: #efe; border: 1px solid #cfc; color: #060; }
-    .row { display: flex; gap: 15px; }
-    .row > div { flex: 1; }
-    label { display: block; margin: 10px 0 5px; }
-    input { width: 100%; padding: 8px; box-sizing: border-box; }
-    button { padding: 10px 20px; margin: 10px 0; }
-    .muted { color: #666; font-size: 0.9em; }
-  </style>
+  <link rel="stylesheet" href="./admin/style.css">
 </head>
 <body>
   <div class="container">
@@ -189,3 +164,4 @@ function page_form(string $flash = '', array $old = []): string
 </html>
 HTML;
 }
+?>
