@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-require _DIR_ . '/../vendor/autoload.php';
+require __DIR__ . '/../vendor/autoload.php';
 
 use App\Health;
 use App\Db;
@@ -132,7 +132,7 @@ function page_form(string $flash = '', array $old = []): string
     $cell = h($old['cell'] ?? '');
     $email = h($old['email'] ?? '');
 
-return <<<HTML
+    return <<<HTML
 <!doctype html>
 <html lang="pt-br">
 <head>
