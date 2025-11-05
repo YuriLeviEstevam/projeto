@@ -154,7 +154,7 @@ function page_form(string $flash = '', array $old = []): string
         <div><label for="phone">Telefone (fixo)</label><input type="tel" id="phone" name="phone" value="{$phone}"></div>
         <div><label for="cellphone">Celular</label><input type="tel" id="cellphone" name="cellphone" value="{$cell}"></div>
       </div>
-      <div><label for="email">E-mail</label><input type="email" id="email" name="email" value="{$email}" placeholder="voce@exemplo.com"></div>
+      <div><label for="email">E-mail</label><input type="email" id="email" name="email" value="{$email}"></div>
       <div><button class="primary" type="submit">Enviar cadastro</button></div>
       <p class="muted"><small class="hint">Ao enviar, você concorda com o uso dos seus dados para contato e agendamento.</small></p>
     </form>
