@@ -41,3 +41,4 @@ function page_form(string $flash='', array $old=[]): string{
   <p class="muted"><small class="hint">Ao enviar, você concorda com o uso dos seus dados para contato e agendamento.</small></p>
 </form><p class="muted">Endpoints: <code>/health</code> • <code>/db-check</code> • <code>POST /patients</code></p></div></body></html>
 HTML;
+}
