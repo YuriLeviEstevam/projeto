@@ -3,7 +3,7 @@
 declare(strict_types=1);
 
 require __DIR__ . '/../vendor/autoload.php';
-@@ -11,64 +12,115 @@
+
 
 function h(string $s): string
 {
