@@ -47,6 +47,7 @@ if ($method === 'POST' && $path === '/patients') {
 
     $err = [];
 
+    // --- Validações ---
     if (mb_strlen($name) < 3) {
         $err[] = 'Nome deve ter ao menos 3 caracteres.';
     }
@@ -55,8 +56,8 @@ if ($method === 'POST' && $path === '/patients') {
         $err[] = 'Nome não deve conter números ou caracteres especiais.';
     }
 
-    if (mb_strlen($cpf) !== 11) {
-        $err[] = 'CPF deve ter 11 dígitos.';
+    if ($cpf === '' || mb_strlen($cpf) !== 11) {
+        $err[] = 'CPF deve conter 11 dígitos numéricos.';
     } elseif (!preg_match('/^\d{11}$/', $cpf)) {
         $err[] = 'CPF deve conter apenas números.';
     }
@@ -89,22 +90,27 @@ if ($method === 'POST' && $path === '/patients') {
         exit;
     }
 
+    // --- Inserção no banco ---
     try {
         $pdo = Db::conn();
-        $st = $pdo->prepare(
-        'INSERT INTO patients (name, cpf, birth_date, phone, cellphone, email) VALUES (:n, :c_f, :b, :p, :c, :e)'
-        );
-        $st->execute([
-            ':n' => $name ?: null,
-            ':c_f' => $cpf ?: null,
-            ':b' => $birth ?: null,
-            ':p' => $phone ?: null,
-            ':c' => $cell ?: null,
-            ':e' => $email ?: null,
-        ]);
 
-        echo page_form('<div class="alert success">Paciente cadastrado com sucesso.</div>');
+        $sql = "INSERT INTO patients (name, cpf, birth_date, phone, cellphone, email)
+                VALUES (:name, :cpf, :birth_date, :phone, :cellphone, :email)";
+
+        $stmt = $pdo->prepare($sql);
+
+        $stmt->bindValue(':name', $name);
+        $stmt->bindValue(':cpf', $cpf);
+        $stmt->bindValue(':birth_date', $birth ?: null, PDO::PARAM_NULL | PDO::PARAM_STR);
+        $stmt->bindValue(':phone', $phone ?: null);
+        $stmt->bindValue(':cellphone', $cell ?: null);
+        $stmt->bindValue(':email', $email ?: null);
+
+        $stmt->execute();
+
+        echo page_form('<div class="alert success">✅ Paciente cadastrado com sucesso.</div>');
         exit;
+
     } catch (Throwable $e) {
         echo page_form(
             '<div class="alert error"><strong>Erro ao salvar:</strong> ' . h($e->getMessage()) . '</div>',
@@ -189,3 +195,4 @@ function page_form(string $flash = '', array $old = []): string
 </html>
 HTML;
 }
+
