@@ -1,4 +1,4 @@
-<?php
+
 // ...existing code...
 <?php
 declare(strict_types=1);
