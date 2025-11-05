@@ -132,7 +132,7 @@ function page_form(string $flash = '', array $old = []): string
     $cell = h($old['cell'] ?? '');
     $email = h($old['email'] ?? '');
 
-    return <<<HTML
+
 <!doctype html>
 <html lang="pt-br">
 <head>
@@ -162,6 +162,6 @@ function page_form(string $flash = '', array $old = []): string
   </div>
 </body>
 </html>
-HTML;
+
 }
 
